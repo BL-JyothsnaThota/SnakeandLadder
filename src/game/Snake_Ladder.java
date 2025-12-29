@@ -46,8 +46,33 @@ public class Snake_Ladder {
         return position;
     }
 	
+    static void playSinglePlayerGame() {
+
+        int position = 0;
+        int diceCount = 0;
+
+        System.out.println("🎯 Single Player Game Started");
+
+        while (position < WIN_POSITION) {
+
+            int dieValue = rollDie();
+            int option = getOption();
+            diceCount++;
+
+            int prevPos = position;
+            position = movePlayer(position, dieValue, option);
+
+            System.out.println("Rolled: " + dieValue +
+                    " | Position: " + prevPos + " -> " + position);
+        }
+
+        System.out.println("\n🏆 Player Wins!");
+        System.out.println("🎲 Total Dice Rolls: " + diceCount);
+    }
+    
 	public static void main(String[] args) {
 		
+		playSinglePlayerGame();
 	}
 	
 }
