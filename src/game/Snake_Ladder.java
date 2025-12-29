@@ -13,6 +13,10 @@ public class Snake_Ladder {
     static int rollDie() {
         return random.nextInt(6) + 1;
     }
+    
+    static int getOption() {
+        return random.nextInt(3);
+    }
 	
 	public static void main(String[] args) {
 		
