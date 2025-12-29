@@ -70,9 +70,62 @@ public class Snake_Ladder {
         System.out.println("🎲 Total Dice Rolls: " + diceCount);
     }
     
+    static void playTwoPlayerGame() {
+
+        int player1Pos = 0;
+        int player2Pos = 0;
+        int diceCount = 0;
+        boolean isPlayer1Turn = true;
+
+        System.out.println("\n🎯 Two Player Game Started");
+
+        while (player1Pos < WIN_POSITION && player2Pos < WIN_POSITION) {
+
+            int dieValue = rollDie();
+            int option = getOption();
+            diceCount++;
+
+            if (isPlayer1Turn) {
+                int prevPos = player1Pos;
+                player1Pos = movePlayer(player1Pos, dieValue, option);
+
+                System.out.println("Player 1 rolled " + dieValue +
+                        " | Position: " + prevPos + " -> " + player1Pos);
+
+                // If Ladder, same player plays again
+                if (option != LADDER) {
+                    isPlayer1Turn = false;
+                }
+
+            } else {
+                int prevPos = player2Pos;
+                player2Pos = movePlayer(player2Pos, dieValue, option);
+
+                System.out.println("Player 2 rolled " + dieValue +
+                        " | Position: " + prevPos + " -> " + player2Pos);
+
+                // If Ladder, same player plays again
+                if (option != LADDER) {
+                    isPlayer1Turn = true;
+                }
+            }
+        }
+
+        System.out.println("\n🎉 Game Over 🎉");
+
+        if (player1Pos == WIN_POSITION) {
+            System.out.println("🏆 Player 1 Wins!");
+        } else {
+            System.out.println("🏆 Player 2 Wins!");
+        }
+
+        System.out.println("🎲 Total Dice Rolls: " + diceCount);
+    }
+    
 	public static void main(String[] args) {
 		
 		playSinglePlayerGame();
+		playTwoPlayerGame();
 	}
 	
 }
