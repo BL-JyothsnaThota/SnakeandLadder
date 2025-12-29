@@ -38,7 +38,10 @@ public class Snake_Ladder {
             position = 0;
         }
 
-        
+        // Player must reach exact 100
+        if (position > WIN_POSITION) {
+            position -= dieValue;
+        }
 
         return position;
     }
