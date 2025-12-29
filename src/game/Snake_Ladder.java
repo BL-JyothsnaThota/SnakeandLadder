@@ -17,6 +17,31 @@ public class Snake_Ladder {
     static int getOption() {
         return random.nextInt(3);
     }
+    
+    static int movePlayer(int position, int dieValue, int option) {
+
+        switch (option) {
+            case NO_PLAY:
+                break;
+
+            case LADDER:
+                position += dieValue;
+                break;
+
+            case SNAKE:
+                position -= dieValue;
+                break;
+        }
+
+        // Player should not go below 0
+        if (position < 0) {
+            position = 0;
+        }
+
+        
+
+        return position;
+    }
 	
 	public static void main(String[] args) {
 		
